@@ -1,3 +1,23 @@
+
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "sad-cat-dp",
+      "description": "A melancholic and sad cat profile picture",
+      "imageUrl": "/favicon.ico",
+      "imageHint": "sad cat"
+    },
+    {
+      "id": "album-art-1",
+      "description": "Abstract lofi album art with static noise",
+      "imageUrl": "/favicon.ico",
+      "imageHint": "lofi art"
+    },
+    {
+      "id": "album-art-2",
+      "description": "Vintage cassette tape with neon light",
+      "imageUrl": "/favicon.ico",
+      "imageHint": "cassette tape"
+    }
+  ]
 }
