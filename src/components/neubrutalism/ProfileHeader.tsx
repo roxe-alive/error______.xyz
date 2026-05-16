@@ -44,7 +44,6 @@ export const ProfileHeader = () => {
         <div className="flex flex-wrap gap-3 mt-6 justify-center md:justify-start">
           <Badge className="bg-black text-white px-4 py-2 text-md rounded-none nb-border hover:bg-black">Digital Ghost</Badge>
           <Badge className="bg-[#2563EB] text-white px-4 py-2 text-md rounded-none nb-border hover:bg-[#2563EB]">Static Enthusiast</Badge>
-          <Badge className="bg-white text-black px-4 py-2 text-md rounded-none nb-border hover:bg-white">Sad Cat Owner</Badge>
         </div>
         <p className="mt-6 font-code text-lg max-w-xl opacity-80 italic">
           "The static echoes louder when you're not around. Welcome to my error page."
