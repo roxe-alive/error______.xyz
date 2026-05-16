@@ -1,0 +1,11 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "sad-cat-dp",
+      "description": "A melancholic and sad cat profile picture",
+      "imageUrl": "https://picsum.photos/seed/sadcat88/400/400",
+      "imageHint": "sad cat"
+    }
+  ]
+}
