@@ -14,14 +14,20 @@ export const ProfileHeader = () => {
       <div className="relative">
         <div className="nb-border nb-shadow-lg p-1 bg-black">
           <div className="bg-white p-1">
-             <Image 
-                src={catImage?.imageUrl || ''}
-                alt="Sad Cat"
-                width={180}
-                height={180}
-                className="grayscale hover:grayscale-0 transition-all duration-500"
-                data-ai-hint="sad cat"
-             />
+             {catImage?.imageUrl ? (
+               <Image 
+                  src={catImage.imageUrl}
+                  alt="Sad Cat"
+                  width={180}
+                  height={180}
+                  className="grayscale hover:grayscale-0 transition-all duration-500"
+                  data-ai-hint="sad cat"
+               />
+             ) : (
+               <div className="w-[180px] h-[180px] bg-muted flex items-center justify-center font-code text-xs text-center p-4">
+                 IMAGE_NOT_FOUND.ERR
+               </div>
+             )}
           </div>
         </div>
         <div className="absolute -bottom-4 -right-4 bg-[#EF4444] text-white nb-border px-3 py-1 font-headline font-bold uppercase text-sm -rotate-6">

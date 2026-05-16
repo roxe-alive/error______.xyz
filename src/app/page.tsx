@@ -7,7 +7,7 @@ import { TypewriterLyrics } from '@/components/neubrutalism/TypewriterLyrics'
 import { StickyNote } from '@/components/neubrutalism/StickyNote'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Plus, Share2, Info, Terminal, Activity } from 'lucide-react'
+import { Plus, Share2, Terminal, Activity } from 'lucide-react'
 
 const LYRICS = "And, oh, it's hard to see you, but I wish you were right here\nOh, it's hard to leave you when I get you everywhere\nAll this time I'm thinking we could never be a pair\nOh, no, I don't need you, but I miss you, come here\nAnd, oh, it's hard to see you, but I wish you were right here\nOh, it's hard to leave you when I get you everywhere\nAll this time, I'm thinking I'm strong enough to sink it\nOh, no, I don't need you, but I miss you, come here\nHe love me not, he loves me\nHe holds me tight then lets me go\nHe love me not, he loves me\nHe holds me tight then lets me go"
 
