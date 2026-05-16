@@ -55,4 +55,16 @@
   .nb-border-thin {
     border: 2px solid black;
   }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-black;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-[#00FF00]/20 border-2 border-black;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-[#00FF00]/40;
+  }
 }
