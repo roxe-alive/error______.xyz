@@ -10,13 +10,13 @@
     {
       "id": "album-art-1",
       "description": "Abstract lofi album art with static noise",
-      "imageUrl": "https://picsum.photos/seed/echo1/600/600",
+      "imageUrl": "/favicon.ico",
       "imageHint": "lofi art"
     },
     {
       "id": "album-art-2",
       "description": "Vintage cassette tape with neon light",
-      "imageUrl": "https://picsum.photos/seed/echo2/600/600",
+      "imageUrl": "/favicon.ico",
       "imageHint": "cassette tape"
     }
   ]
