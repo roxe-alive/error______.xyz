@@ -2,12 +2,14 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { ProfileHeader } from '@/components/neubrutalism/ProfileHeader'
 import { TypewriterLyrics } from '@/components/neubrutalism/TypewriterLyrics'
 import { StickyNote } from '@/components/neubrutalism/StickyNote'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Plus, Share2, Terminal, Activity } from 'lucide-react'
+import { Plus, Share2, Terminal, Activity, Music } from 'lucide-react'
+import { PlaceHolderImages } from '@/lib/placeholder-images'
 
 const LYRICS = "And, oh, it's hard to see you, but I wish you were right here\nOh, it's hard to leave you when I get you everywhere\nAll this time I'm thinking we could never be a pair\nOh, no, I don't need you, but I miss you, come here\nAnd, oh, it's hard to see you, but I wish you were right here\nOh, it's hard to leave you when I get you everywhere\nAll this time, I'm thinking I'm strong enough to sink it\nOh, no, I don't need you, but I miss you, come here\nHe love me not, he loves me\nHe holds me tight then lets me go\nHe love me not, he loves me\nHe holds me tight then lets me go"
 
@@ -20,6 +22,9 @@ interface Note {
 export default function Home() {
   const [notes, setNotes] = useState<Note[]>([])
   const [newNoteText, setNewNoteText] = useState('')
+
+  const album1 = PlaceHolderImages.find(img => img.id === 'album-art-1')
+  const album2 = PlaceHolderImages.find(img => img.id === 'album-art-2')
 
   useEffect(() => {
     const saved = localStorage.getItem('static_echoes_notes')
@@ -61,8 +66,44 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-white p-4 md:p-8 lg:p-12 selection:bg-black selection:text-[#FFFF00]">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-white p-4 md:p-8 lg:p-12 selection:bg-black selection:text-[#FFFF00] relative overflow-x-hidden">
+      {/* Background Double Art 1 */}
+      <div className="fixed -left-20 top-1/4 -rotate-12 opacity-20 pointer-events-none z-0 hidden xl:block">
+        <div className="relative">
+          <div className="nb-border bg-black w-64 h-64 absolute top-4 left-4" />
+          {album1 && (
+            <div className="nb-border bg-white p-2 w-64 h-64 relative">
+              <Image 
+                src={album1.imageUrl} 
+                alt="Art 1" 
+                fill 
+                className="object-cover grayscale"
+                data-ai-hint="lofi art"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Background Double Art 2 */}
+      <div className="fixed -right-20 bottom-1/4 rotate-12 opacity-20 pointer-events-none z-0 hidden xl:block">
+        <div className="relative">
+          <div className="nb-border bg-black w-72 h-72 absolute -top-4 -left-4" />
+          {album2 && (
+            <div className="nb-border bg-white p-2 w-72 h-72 relative">
+              <Image 
+                src={album2.imageUrl} 
+                alt="Art 2" 
+                fill 
+                className="object-cover grayscale"
+                data-ai-hint="cassette tape"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <ProfileHeader />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 items-start">
