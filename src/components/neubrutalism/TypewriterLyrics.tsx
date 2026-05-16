@@ -20,15 +20,13 @@ export const TypewriterLyrics = ({ lyrics, className }: TypewriterLyricsProps) =
         setDisplayText((prev) => prev + lyrics[index])
         setIndex((prev) => prev + 1)
         
-        // Random glitch effect every few characters
-        if (Math.random() > 0.97) {
+        if (Math.random() > 0.98) {
           setIsGlitching(true)
           setTimeout(() => setIsGlitching(false), 100)
         }
       }, 40)
       return () => clearTimeout(timeout)
     } else {
-      // Loop or just stay there
       const resetTimeout = setTimeout(() => {
         setDisplayText('')
         setIndex(0)
@@ -45,7 +43,6 @@ export const TypewriterLyrics = ({ lyrics, className }: TypewriterLyricsProps) =
         className
       )}
     >
-      {/* Terminal Header */}
       <div className="bg-white border-b-4 border-black p-2 flex items-center justify-between">
         <div className="flex gap-2">
           <div className="w-3 h-3 rounded-full bg-[#EF4444] nb-border-thin" />
@@ -55,32 +52,34 @@ export const TypewriterLyrics = ({ lyrics, className }: TypewriterLyricsProps) =
         <div className="text-[10px] font-bold uppercase tracking-widest text-black">
           root@error-void:~
         </div>
-        <div className="w-12" />
+        <div className="flex gap-1">
+          <div className="w-4 h-1 bg-black/20" />
+          <div className="w-4 h-1 bg-black/20" />
+        </div>
       </div>
 
-      <div className="p-6 text-[#00FF00] text-lg leading-relaxed flex-1">
+      <div className="p-6 text-[#00FF00] text-lg leading-relaxed flex-1 font-mono">
         <div className="flex gap-2 items-start">
           <span className="text-white shrink-0">$</span>
           <p className="whitespace-pre-wrap">
             {displayText}
-            <span className="inline-block w-2 h-5 bg-[#00FF00] ml-1 animate-pulse align-middle" />
+            <span className="inline-block w-2.5 h-6 bg-[#00FF00] ml-1 animate-pulse align-middle" />
           </p>
         </div>
       </div>
 
-      <div className="bg-black/50 p-2 px-4 border-t-2 border-[#00FF00]/20 flex items-center justify-between">
+      <div className="bg-black/80 p-2 px-4 border-t-2 border-[#00FF00]/20 flex items-center justify-between">
         <div className="text-[10px] text-[#00FF00]/60 uppercase tracking-tighter">
-          Buffer: {Math.floor((index / lyrics.length) * 100)}% complete
+          Bytes: {index} / {lyrics.length}
         </div>
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 bg-[#EF4444] rounded-full animate-ping" />
-          <span className="text-[10px] text-[#00FF00]/60 uppercase font-bold">Live Transmission</span>
+          <span className="text-[10px] text-[#00FF00]/60 uppercase font-bold">Encrypted Stream</span>
         </div>
       </div>
       
-      {/* Scanline Effect */}
-      <div className="absolute inset-0 pointer-events-none opacity-5" 
-           style={{ background: 'linear-gradient(transparent 50%, rgba(0,0,0,0.5) 50%)', backgroundSize: '100% 4px' }} />
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03]" 
+           style={{ background: 'linear-gradient(transparent 50%, rgba(255,255,255,0.5) 50%)', backgroundSize: '100% 4px' }} />
     </div>
   )
 }

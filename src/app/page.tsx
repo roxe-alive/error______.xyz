@@ -21,7 +21,6 @@ export default function Home() {
   const [notes, setNotes] = useState<Note[]>([])
   const [newNoteText, setNewNoteText] = useState('')
 
-  // Load notes from localstorage on mount
   useEffect(() => {
     const saved = localStorage.getItem('static_echoes_notes')
     if (saved) {
@@ -31,7 +30,6 @@ export default function Home() {
         console.error("Failed to load notes", e)
       }
     } else {
-      // Initial defaults
       setNotes([
         { id: '1', content: 'Don\'t forget to feed the void.', color: 'yellow' },
         { id: '2', content: 'Everything is fine... mostly.', color: 'blue' },
@@ -40,7 +38,6 @@ export default function Home() {
     }
   }, [])
 
-  // Save notes to localstorage
   useEffect(() => {
     localStorage.setItem('static_echoes_notes', JSON.stringify(notes))
   }, [notes])
@@ -68,8 +65,7 @@ export default function Home() {
       <div className="max-w-7xl mx-auto">
         <ProfileHeader />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
-          {/* Main Content Area */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 items-start">
           <div className="lg:col-span-2 space-y-12">
             <section>
               <div className="flex items-center gap-3 mb-6">
@@ -88,7 +84,6 @@ export default function Home() {
               </div>
 
               <div className="bg-[#f0f0f0] nb-border nb-shadow p-6 min-h-[400px] relative overflow-hidden">
-                {/* Grid Background */}
                 <div className="absolute inset-0 opacity-10 pointer-events-none" 
                      style={{ backgroundImage: 'radial-gradient(black 1px, transparent 0)', backgroundSize: '24px 24px' }} />
                 
@@ -124,8 +119,7 @@ export default function Home() {
             </section>
           </div>
 
-          {/* Sidebar Area */}
-          <aside className="space-y-8">
+          <aside className="space-y-8 sticky top-8">
             <div className="nb-border nb-shadow p-6 bg-[#FFFF00]">
               <div className="flex items-center gap-2 mb-4">
                 <Info className="h-6 w-6" />
