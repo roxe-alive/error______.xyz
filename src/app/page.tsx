@@ -8,7 +8,7 @@ import { TypewriterLyrics } from '@/components/neubrutalism/TypewriterLyrics'
 import { StickyNote } from '@/components/neubrutalism/StickyNote'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Plus, Share2, Terminal, Activity, Music } from 'lucide-react'
+import { Plus, Share2, Terminal, Activity, Music, Disc, Mic2, CassetteTape, Radio, Volume2 } from 'lucide-react'
 import { PlaceHolderImages } from '@/lib/placeholder-images'
 
 const LYRICS = "And, oh, it's hard to see you, but I wish you were right here\nOh, it's hard to leave you when I get you everywhere\nAll this time I'm thinking we could never be a pair\nOh, no, I don't need you, but I miss you, come here\nAnd, oh, it's hard to see you, but I wish you were right here\nOh, it's hard to leave you when I get you everywhere\nAll this time, I'm thinking I'm strong enough to sink it\nOh, no, I don't need you, but I miss you, come here\nHe love me not, he loves me\nHe holds me tight then lets me go\nHe love me not, he loves me\nHe holds me tight then lets me go"
@@ -17,6 +17,7 @@ interface Note {
   id: string
   content: string
   color: 'yellow' | 'blue' | 'red' | 'white'
+  rotation: number
 }
 
 export default function Home() {
@@ -36,9 +37,9 @@ export default function Home() {
       }
     } else {
       setNotes([
-        { id: '1', content: 'Don\'t forget to feed the void.', color: 'yellow' },
-        { id: '2', content: 'Everything is fine... mostly.', color: 'blue' },
-        { id: '3', content: 'Listen to the static.', color: 'red' },
+        { id: '1', content: 'Don\'t forget to feed the void.', color: 'yellow', rotation: -2 },
+        { id: '2', content: 'Everything is fine... mostly.', color: 'blue', rotation: 3 },
+        { id: '3', content: 'Listen to the static.', color: 'red', rotation: -1 },
       ])
     }
   }, [])
@@ -52,10 +53,12 @@ export default function Home() {
     if (!newNoteText.trim()) return
     const colors: Note['color'][] = ['yellow', 'blue', 'red', 'white']
     const randomColor = colors[Math.floor(Math.random() * colors.length)]
+    const randomRotation = Math.floor(Math.random() * 6) - 3 // -3 to 3 degrees
     const newNote: Note = {
       id: Math.random().toString(36).substr(2, 9),
       content: newNoteText,
-      color: randomColor
+      color: randomColor,
+      rotation: randomRotation
     }
     setNotes([newNote, ...notes])
     setNewNoteText('')
@@ -66,9 +69,19 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-white p-4 md:p-8 lg:p-12 selection:bg-black selection:text-[#FFFF00] relative overflow-x-hidden">
-      {/* Background Double Art 1 */}
-      <div className="fixed -left-20 top-1/4 -rotate-12 opacity-20 pointer-events-none z-0 hidden xl:block">
+    <div className="min-h-screen bg-[#fafafa] p-4 md:p-8 lg:p-12 selection:bg-black selection:text-[#FFFF00] relative overflow-x-hidden">
+      {/* Background Decorations - The "Messy" Layer */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.07] z-0">
+        <Disc className="absolute top-[10%] left-[5%] w-32 h-32 rotate-12" />
+        <Music className="absolute top-[40%] right-[10%] w-24 h-24 -rotate-12" />
+        <Mic2 className="absolute bottom-[15%] left-[15%] w-20 h-20 rotate-45" />
+        <CassetteTape className="absolute top-[60%] left-[2%] w-40 h-40 -rotate-6" />
+        <Radio className="absolute bottom-[5%] right-[5%] w-36 h-36 rotate-12" />
+        <Volume2 className="absolute top-[20%] right-[30%] w-16 h-16 -rotate-45" />
+      </div>
+
+      {/* Floating Art 1 */}
+      <div className="fixed -left-10 top-1/4 -rotate-12 opacity-30 pointer-events-none z-0 hidden xl:block">
         <div className="relative">
           <div className="nb-border bg-black w-64 h-64 absolute top-4 left-4" />
           {album1 && (
@@ -85,8 +98,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Background Double Art 2 */}
-      <div className="fixed -right-20 bottom-1/4 rotate-12 opacity-20 pointer-events-none z-0 hidden xl:block">
+      {/* Floating Art 2 */}
+      <div className="fixed -right-10 bottom-1/4 rotate-12 opacity-30 pointer-events-none z-0 hidden xl:block">
         <div className="relative">
           <div className="nb-border bg-black w-72 h-72 absolute -top-4 -left-4" />
           {album2 && (
@@ -106,9 +119,13 @@ export default function Home() {
       <div className="max-w-7xl mx-auto relative z-10">
         <ProfileHeader />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 items-start">
-          <div className="lg:col-span-2 space-y-12">
-            <section>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-8 space-y-12">
+            <section className="relative">
+              {/* Sticker overlay for the section */}
+              <div className="absolute -top-6 -left-6 bg-[#2563EB] text-white nb-border px-4 py-1 font-headline font-bold uppercase text-xs z-20 rotate-[-4deg] nb-shadow">
+                Channel_01: Output
+              </div>
               <div className="flex items-center gap-3 mb-6">
                 <Terminal className="h-8 w-8 text-black" />
                 <h2 className="text-3xl font-headline font-black underline decoration-4">System_Terminal</h2>
@@ -124,9 +141,9 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="bg-[#f0f0f0] nb-border nb-shadow p-6 min-h-[400px] relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10 pointer-events-none" 
-                     style={{ backgroundImage: 'radial-gradient(black 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+              <div className="bg-white nb-border nb-shadow p-6 min-h-[450px] relative overflow-hidden">
+                <div className="absolute inset-0 opacity-5 pointer-events-none" 
+                     style={{ backgroundImage: 'radial-gradient(black 1px, transparent 0)', backgroundSize: '32px 32px' }} />
                 
                 <form onSubmit={addNote} className="mb-8 flex gap-2 relative z-10">
                   <Input 
@@ -140,7 +157,7 @@ export default function Home() {
                   </Button>
                 </form>
 
-                <div className="flex flex-wrap gap-6 relative z-10">
+                <div className="flex flex-wrap gap-8 justify-center lg:justify-start relative z-10 p-4">
                   {notes.map((note) => (
                     <StickyNote 
                       key={note.id}
@@ -148,11 +165,13 @@ export default function Home() {
                       content={note.content}
                       color={note.color}
                       onDelete={deleteNote}
+                      className="transition-all hover:scale-105"
+                      style={{ transform: `rotate(${note.rotation}deg)` }}
                     />
                   ))}
                   {notes.length === 0 && (
-                    <div className="w-full text-center py-20 font-code text-muted-foreground">
-                      The surface is empty. Say something?
+                    <div className="w-full text-center py-20 font-code text-muted-foreground italic">
+                      // surface_empty: waiting for input...
                     </div>
                   )}
                 </div>
@@ -160,8 +179,8 @@ export default function Home() {
             </section>
           </div>
 
-          <aside className="space-y-8 lg:sticky lg:top-8">
-            <div className="nb-border nb-shadow p-6 bg-[#FFFF00]">
+          <aside className="lg:col-span-4 space-y-8 lg:sticky lg:top-8">
+            <div className="nb-border nb-shadow p-6 bg-[#FFFF00] rotate-[1deg]">
               <div className="flex items-center gap-2 mb-4">
                 <Activity className="h-6 w-6" />
                 <h3 className="text-xl font-headline font-bold uppercase">System Info</h3>
@@ -186,7 +205,10 @@ export default function Home() {
               </ul>
             </div>
 
-            <div className="nb-border nb-shadow p-6 bg-white">
+            <div className="nb-border nb-shadow p-6 bg-white -rotate-[2deg] relative">
+              <div className="absolute -top-3 -right-3 bg-[#EF4444] text-white nb-border px-2 py-0.5 text-[10px] font-bold uppercase rotate-12">
+                New!
+              </div>
               <h3 className="text-xl font-headline font-bold uppercase mb-4">Navigation</h3>
               <nav className="flex flex-col gap-3">
                 <button className="text-left py-2 px-4 nb-border nb-shadow hover:nb-shadow-active transition-all font-headline font-bold uppercase text-lg bg-[#2563EB] text-white">
@@ -201,7 +223,11 @@ export default function Home() {
               </nav>
             </div>
 
-            <div className="nb-border nb-shadow p-6 bg-black text-white font-code text-xs leading-relaxed">
+            <div className="nb-border nb-shadow p-6 bg-black text-white font-code text-xs leading-relaxed rotate-[0.5deg]">
+              <div className="flex items-center gap-2 mb-2 text-[#FFFF00]">
+                <Music className="h-3 w-3" />
+                <span className="uppercase font-bold tracking-tighter">Now Playing: Static_Noise.wav</span>
+              </div>
               <p>
                 STATIC ECHOES v1.0.4<br/>
                 DEVELOPED BY ERROR_____.<br/>
