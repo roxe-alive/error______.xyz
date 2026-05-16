@@ -7,7 +7,7 @@ import { TypewriterLyrics } from '@/components/neubrutalism/TypewriterLyrics'
 import { StickyNote } from '@/components/neubrutalism/StickyNote'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Plus, Music2, Share2, Info } from 'lucide-react'
+import { Plus, Music2, Share2, Info, Terminal } from 'lucide-react'
 
 const LYRICS = "And, oh, it's hard to see you, but I wish you were right here\nOh, it's hard to leave you when I get you everywhere\nAll this time I'm thinking we could never be a pair\nOh, no, I don't need you, but I miss you, come here\nAnd, oh, it's hard to see you, but I wish you were right here\nOh, it's hard to leave you when I get you everywhere\nAll this time, I'm thinking I'm strong enough to sink it\nOh, no, I don't need you, but I miss you, come here\nHe love me not, he loves me\nHe holds me tight then lets me go\nHe love me not, he loves me\nHe holds me tight then lets me go"
 
@@ -68,13 +68,13 @@ export default function Home() {
       <div className="max-w-7xl mx-auto">
         <ProfileHeader />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
           {/* Main Content Area */}
           <div className="lg:col-span-2 space-y-12">
             <section>
               <div className="flex items-center gap-3 mb-6">
-                <Music2 className="h-8 w-8 text-black" />
-                <h2 className="text-3xl font-headline font-black underline decoration-4">Transmission</h2>
+                <Terminal className="h-8 w-8 text-black" />
+                <h2 className="text-3xl font-headline font-black underline decoration-4">System_Terminal</h2>
               </div>
               <TypewriterLyrics lyrics={LYRICS} />
             </section>
@@ -99,7 +99,7 @@ export default function Home() {
                     onChange={(e) => setNewNoteText(e.target.value)}
                     className="nb-border bg-white rounded-none font-body h-12 text-lg focus-visible:ring-0 focus-visible:nb-shadow"
                   />
-                  <Button type="submit" className="nb-border nb-shadow h-12 bg-black text-white rounded-none px-6 hover:nb-shadow-active">
+                  <Button type="submit" className="nb-border nb-shadow h-12 bg-black text-white rounded-none px-6 hover:nb-shadow-active transition-transform">
                     <Plus className="h-6 w-6" />
                   </Button>
                 </form>
@@ -128,7 +128,7 @@ export default function Home() {
           <aside className="space-y-8">
             <div className="nb-border nb-shadow p-6 bg-[#FFFF00]">
               <div className="flex items-center gap-2 mb-4">
-                <span role="img" aria-label="info"><Info className="h-6 w-6" /></span>
+                <Info className="h-6 w-6" />
                 <h3 className="text-xl font-headline font-bold uppercase">System Info</h3>
               </div>
               <ul className="space-y-2 font-code text-sm">
